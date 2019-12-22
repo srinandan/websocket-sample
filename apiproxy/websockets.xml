@@ -1,0 +1,18 @@
+<APIProxy revision="1" name="websockets">
+    <DisplayName></DisplayName>
+    <Description></Description>
+    <CreatedAt>1576958788052</CreatedAt>
+    <LastModifiedAt>1576958788052</LastModifiedAt>
+    <BasePaths>/v1/ws</BasePaths>
+    <Policies>
+        <Policy>Verify-API-Key-1</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources></Resources>
+    <TargetServers></TargetServers>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>
