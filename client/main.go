@@ -11,24 +11,24 @@ import (
 )
 
 func main() {
-	endpoint := os.Getenv("ENDPOINT") 
+	endpoint := os.Getenv("ENDPOINT")
 	if endpoint == "" {
 		endpoint = "localhost:3000"
 	}
-	
-	apiKey := os.Getenv("API_KEY")  
+
+	apiKey := os.Getenv("API_KEY")
 
 	apiPath := os.Getenv("API_PATH")
 	if apiPath == "" {
 		apiPath = "/v1/ws"
 	}
 
-	tls := os.Getenv("TLS")
+	enableTLS := os.Getenv("TLS")
 	scheme := "ws"
-	if tls != "" {
+	if enableTLS != "" {
 		scheme = "wss"
 	}
-	
+
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt)
 
@@ -36,15 +36,15 @@ func main() {
 
 	if apiKey != "" {
 		q := u.Query()
-		q.Set("apiKey", apiKey)
+		q.Set("apikey", apiKey)
 		u.RawQuery = q.Encode()
 	}
 
 	log.Printf("connecting to %s", u.String())
 
-	c, _, err := websocket.DefaultDialer.Dial(u.String(), nil)
+	c, resp, err := websocket.DefaultDialer.Dial(u.String(), nil)
 	if err != nil {
-		log.Fatal("dial:", err)
+		log.Fatalf("handshake failed with status %d and message %v", resp.StatusCode, err)
 	}
 	defer c.Close()
 
