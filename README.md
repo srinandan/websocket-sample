@@ -56,7 +56,7 @@ Output:
 
 ```bash
 
-2019/12/21 21:27:12 connecting to ws://localhost:3000/v1/ws?apiKey=xxx
+2019/12/21 21:27:12 connecting to ws://example.com/v1/ws?apikey=xxx
 2019/12/21 21:27:13 recv: Replying to: '2019-12-21 21:27:13.403018 -0800 PST m=+1.010449853' with 'hello'
 2019/12/21 21:27:14 recv: Replying to: '2019-12-21 21:27:14.400193 -0800 PST m=+2.007614408' with 'hello'
 2019/12/21 21:27:15 recv: Replying to: '2019-12-21 21:27:15.403358 -0800 PST m=+3.010769896' with 'hello'
