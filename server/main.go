@@ -24,9 +24,9 @@ func main() {
 					break
 				} else {
 					fmt.Println("Received message: ", string(msg))
-					reply := "Replying to: '" + string(msg) +"' with 'hello'" 
+					reply := "Replying to: '" + string(msg) + "' with 'hello'"
 					conn.WriteMessage(mType, []byte(reply))
-				}	
+				}
 			}
 		}(conn)
 	})
