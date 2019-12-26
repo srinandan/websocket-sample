@@ -14,7 +14,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: websockets-v1
+  name: websockets
 spec:
   replicas: 1
   template:
@@ -24,7 +24,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: gcr.io/{project-id}/websockets
+      - image: gcr.io/nandanks-151422/websockets
         imagePullPolicy: IfNotPresent
         name: websockets
         ports:
