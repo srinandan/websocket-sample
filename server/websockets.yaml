@@ -32,3 +32,5 @@ spec:
         resources:
           requests:
             cpu: 100m
+      nodeSelector:
+        cloud.google.com/gke-nodepool: apps                             
