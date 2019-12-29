@@ -5,7 +5,7 @@ WORKDIR /go/src/websocket
 COPY . /go/src/websocket
 ENV GO111MODULE=on
 RUN go mod download
-RUN CGO_ENABLED=0 GOOS=linux go build -o /go/bin/websocket
+RUN CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-w -extldflags "-static"' -o /go/bin/websocket
 
 #without these certificates, we cannot verify the JWT token
 FROM alpine:latest as certs
