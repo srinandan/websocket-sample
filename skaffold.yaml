@@ -3,6 +3,8 @@ kind: Config
 metadata:
   name: websocket-sample
 build:
+  googleCloudBuild:
+    projectId: nandanks-151422
   artifacts:
   - image: gcr.io/nandanks-151422/websockets
     context: server

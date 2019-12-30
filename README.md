@@ -8,16 +8,28 @@ A sample websocket sample is included which responds with `hello`. To install th
 
 ### Server Prequisites
 
-* go 1.12 or higher
+* go 1.13 or higher
 * docker
 * kubectl (to deploy to kubernetes)
+* skaffold (optional)
 
-### Server deploy steps
+### Server Installation
+
+#### Server install via kubectl
 
 1. Build the [docker image](./server/Dockerfile)
 2. Deploy to a container register
 3. Modify the kubernetes [manifest](./server/websockets.yaml)
 4. Deploy the server `kubectl apply -f websockets.yaml`
+
+#### Server install via skaffold
+
+This application can also be installed via [skaffold](https://skaffold.dev/). Modify the [skaffold.yaml](./skaffold.yaml) to set the appropriate project name.
+
+```bash
+
+skaffold run
+```
 
 ## Client
 
@@ -25,7 +37,7 @@ A sample websocket sample is included which takes an input from the user and sen
 
 ### Client Prequisites
 
-* go 1.12 or higher
+* go 1.13 or higher
 
 ### Client deploy steps
 
