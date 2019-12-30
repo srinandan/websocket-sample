@@ -1,0 +1,27 @@
+# .goreleaser.yml
+project_name: websocket-client
+
+builds:
+  -
+    main: ./client/main.go
+    binary: websocket-client
+    goos:
+      - linux
+      - darwin
+      - windows
+    ldflags:
+    - -s -w -a -extldflags "-static" -X main.Version={{.Commit}}
+archives:
+  - id: websocket-client
+    format: zip
+    name_template: "{{ .ProjectName }}_{{.Tag}}_{{ .Os }}_{{ .Arch }}"
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+    wrap_in_directory: true  
+release:
+  draft: true
+  prerelease: true

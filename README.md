@@ -8,10 +8,9 @@ A sample websocket sample is included which responds with `hello`. To install th
 
 ### Server Prequisites
 
-* go 1.13 or higher
-* docker
-* kubectl (to deploy to kubernetes)
-* skaffold (optional)
+* kubectl 1.13 or higher
+* docker 19.x or higher
+* skaffold 1.1.0 or higher (optional)
 
 ### Server Installation
 
@@ -38,10 +37,14 @@ A sample websocket sample is included which takes an input from the user and sen
 ### Client Prequisites
 
 * go 1.13 or higher
+* goreleaser v0.120.3 (optional)
 
-### Client deploy steps
+### Start client steps
 
-1. [./build.sh](./client/build.sh)
+Option 1: Download the binary from [releases](https://github.com/srinandan/websocket-sample/releases)
+Option 2: Build the binary manually using [./build.sh](./client/build.sh)
+Option 3: Build using [goreleaser](https://goreleaser.com/) `goreleaser --snapshot --skip-publish --rm-dist`
+NOTE: has been tested with v0.120.3
 
 ## API Proxy
 
