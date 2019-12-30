@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2alpha1
+kind: Config
+metadata:
+  name: websocket-sample
+build:
+  artifacts:
+  - image: gcr.io/nandanks-151422/websockets
+    context: server
+deploy:
+  kubectl:
+    flags:
+      global: ["--namespace=apps"]
+    manifests:
+    - server/websockets.yaml
