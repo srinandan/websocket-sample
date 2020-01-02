@@ -30,6 +30,22 @@ This application can also be installed via [skaffold](https://skaffold.dev/). Mo
 skaffold run
 ```
 
+##### Errors in Skaffold
+
+When rerunning/installing the application, you may observe errors like this:
+
+```bash
+
+ - Error from server (Invalid): error when applying patch:
+ ...
+ ...
+ `selector` does not match template `labels`
+ ```
+
+There is an open [issue](https://github.com/GoogleContainerTools/skaffold/issues/3133) for this in the skaffold project.
+
+Workaound: first run `skaffold delete` and then `skaffold run`
+
 ## Client
 
 A sample websocket sample is included which takes an input from the user and sends it to the server. 
