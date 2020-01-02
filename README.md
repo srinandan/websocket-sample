@@ -46,6 +46,24 @@ There is an open [issue](https://github.com/GoogleContainerTools/skaffold/issues
 
 Workaound: first run `skaffold delete` and then `skaffold run`
 
+## Apigee components
+
+An API Proxy is included which verifies an API Key before allowing the websocket connection.  
+
+### Prerequisites
+
+* Apigee hybrid runtime
+* GKE 1.13.x
+* [apigeecli](https://github.com/srinandan/apigeecli) v1.1 (optional)
+* A GCP Service Account with pemrissions to create apis, products ,developers and apps.
+
+### Install Apigee components
+
+```bash
+
+./install-sample-apigee.sh {org-name} {env-name} {path-to-service-account.json}
+```
+
 ## Client
 
 A sample websocket sample is included which takes an input from the user and sends it to the server. 
@@ -61,13 +79,6 @@ Option 1: Download the binary from [releases](https://github.com/srinandan/webso
 Option 2: Build the binary manually using [./build.sh](./client/build.sh)
 Option 3: Build using [goreleaser](https://goreleaser.com/) `goreleaser --snapshot --skip-publish --rm-dist`
 NOTE: has been tested with v0.120.3
-
-## API Proxy
-
-An API Proxy is included which verifies an API Key before allowing the websocket connection.  
-
-* Apigee hybrid runtime
-* GKE 1.13.x
 
 ## Test
 
