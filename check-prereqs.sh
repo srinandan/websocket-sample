@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set echo off
-
 if [ -z "$1" ]
   then
     echo "org name is a mandatory parameter. Usage: 'install-oauth-sharedflow {org} {env} {path-to-service-account.json}'"
@@ -27,9 +25,11 @@ if [ $RESULT -ne 0 ]; then
   exit 1
 fi
 
-zip 2>&1 >/dev/null
+zip --help 2>&1 >/dev/null
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
   echo "this script depends on the zip utility. Please install zip and re-run the command"
   exit 1
 fi
+
+exit 0

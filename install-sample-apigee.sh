@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./check-prereqs.sh
+./check-prereqs.sh $1 $2 $3
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
   exit 1
@@ -14,8 +14,6 @@ if [ $RESULT -ne 0 ]; then
   exit 1
 fi
 
-set echo on
-
 # import the api proxy bundle
 apigeecli apis create -o $1 -n websockets -p websockets.zip -a $3
 RESULT=$?
@@ -25,7 +23,7 @@ if [ $RESULT -ne 0 ]; then
 fi
 
 # deploy the api proxy
-apigeecli apis deploy -o $1 -e $2 -n oauth-sharedflow -r 1
+apigeecli apis deploy -o $1 -e $2 -n oauth-sharedflow -v1 1
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
   echo "failed to deploy api proxy"
