@@ -58,7 +58,11 @@ func main() {
 
 	c, resp, err := websocket.DefaultDialer.Dial(u.String(), nil)
 	if err != nil {
-		log.Fatalf("handshake failed with status %d and message %v", resp.StatusCode, err)
+		if resp != nil {
+			log.Fatalf("handshake failed with status %d and message %v", resp.StatusCode, err)
+		} else {
+			log.Fatalf("handshake failed with status message %v", err)
+		}
 	}
 	defer c.Close()
 
