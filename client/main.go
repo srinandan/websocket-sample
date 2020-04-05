@@ -22,6 +22,8 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
+
+	"net/http"
 )
 
 func main() {
@@ -56,7 +58,7 @@ func main() {
 
 	log.Printf("connecting to %s", u.String())
 
-	c, resp, err := websocket.DefaultDialer.Dial(u.String(), nil)
+	c, resp, err := websocket.DefaultDialer.Dial(u.String(), http.Header{"x-api-key": {apiKey}})
 	if err != nil {
 		if resp != nil {
 			log.Fatalf("handshake failed with status %d and message %v", resp.StatusCode, err)
