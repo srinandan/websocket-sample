@@ -50,6 +50,12 @@ spec:
         name: websockets
         ports:
         - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5        
         resources:
           requests:
             cpu: 100m
