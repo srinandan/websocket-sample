@@ -9,7 +9,9 @@ spec:
   http:
   - timeout: 5s  
     rewrite:
-      authority: websockets.apps.svc.cluster.local   
+      authority: websockets.apps.svc.cluster.local:3000   
     route:
     - destination:
         host: websockets.apps.svc.cluster.local
+        port:
+          number: 3000
