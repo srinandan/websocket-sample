@@ -15,6 +15,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -46,5 +47,12 @@ func main() {
 		}(conn)
 	})
 
-	http.ListenAndServe(":3000", nil)
+	http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
+		json.NewEncoder(w).Encode(map[string]bool{"ok": true})
+	})
+
+	err := http.ListenAndServe(":3000", nil)
+	if err != nil {
+		fmt.Println("Error starting: ", err)
+	}
 }
