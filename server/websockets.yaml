@@ -36,8 +36,6 @@ spec:
   template:
     metadata:
       annotations:
-        # exlude health check port for envoy filter
-        readiness.status.sidecar.istio.io/applicationPorts: "3000"
         # rewrite http probe
         sidecar.istio.io/rewriteAppHTTPProbers: "true"        
       labels:
