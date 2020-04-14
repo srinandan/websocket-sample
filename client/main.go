@@ -49,7 +49,7 @@ func main() {
 		scheme = "wss"
 	}
 
-	fmt.Println("websocket-client version v" + Version + ", Git: " + Git)
+	fmt.Println("websocket-client version " + Version + ", Git: " + Git)
 	fmt.Println("Endpoint: " + scheme + "://" + endpoint + apiPath)
 	fmt.Println("api_key: " + apiKey)
 
