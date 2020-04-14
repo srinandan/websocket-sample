@@ -1,3 +1,3 @@
 #!/bin/bash
 set -ex
-upx dist/apigeecli*/apigeecli
+upx dist/websocket-client*/websocket-client
