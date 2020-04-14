@@ -15,6 +15,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/url"
 	"os"
@@ -25,6 +26,9 @@ import (
 
 	"net/http"
 )
+
+//Version
+var Version, Git string
 
 func main() {
 	endpoint := os.Getenv("ENDPOINT")
@@ -44,6 +48,10 @@ func main() {
 	if enableTLS != "" {
 		scheme = "wss"
 	}
+
+	fmt.Println("websocket-client version v" + Version + ", Git: " + Git)
+	fmt.Println("Endpoint: " + scheme + "://" + endpoint + apiPath)
+	fmt.Println("api_key: " + apiKey)
 
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt)
