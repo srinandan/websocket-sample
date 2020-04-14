@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # .goreleaser.yml
-project_name: websocket-client
+project_name: websocket-sample
 
 builds:
   -
@@ -23,8 +23,12 @@ builds:
       - linux
       - darwin
       - windows
+    flags:
+    - -trimpath
     ldflags:
-    - -s -w -a -extldflags "-static" -X main.Version={{.Commit}}
+    - -s -w -a -extldflags "-static" -X main.Version={{.Tag}} -X main.Git={{.Commit}}
+    hooks:
+      post: /bin/sh compress.sh
 archives:
   - id: websocket-client
     format: zip
@@ -35,7 +39,7 @@ archives:
       windows: Windows
       386: i386
       amd64: x86_64
-    wrap_in_directory: true  
+    wrap_in_directory: true    
 release:
   draft: true
   prerelease: true
