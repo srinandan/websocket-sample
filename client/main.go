@@ -31,6 +31,11 @@ import (
 var Version, Git string
 
 func main() {
+
+	var err error
+	var c *websocket.Conn
+	var resp *http.Response
+
 	endpoint := os.Getenv("ENDPOINT")
 	if endpoint == "" {
 		endpoint = "localhost:3000"
@@ -43,6 +48,11 @@ func main() {
 		apiPath = "/v1/ws"
 	}
 
+	token := os.Getenv("TOKEN")
+	if token != "" {
+		token = "Bearer " + token
+	}
+
 	enableTLS := os.Getenv("TLS")
 	scheme := "ws"
 	if enableTLS != "" {
@@ -52,21 +62,26 @@ func main() {
 	fmt.Println("websocket-client version " + Version + ", Git: " + Git)
 	fmt.Println("Endpoint: " + scheme + "://" + endpoint + apiPath)
 	fmt.Println("api_key: " + apiKey)
+	fmt.Println("token: " + token)
 
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt)
 
 	u := url.URL{Scheme: scheme, Host: endpoint, Path: apiPath}
 
+	log.Printf("connecting to %s", u.String())
+
 	if apiKey != "" {
 		q := u.Query()
 		q.Set("apikey", apiKey)
 		u.RawQuery = q.Encode()
+		c, resp, err = websocket.DefaultDialer.Dial(u.String(), http.Header{"x-api-key": {apiKey}})
+	} else if token != "" {
+		c, resp, err = websocket.DefaultDialer.Dial(u.String(), http.Header{"Authorization": {token}})
+	} else {
+		c, resp, err = websocket.DefaultDialer.Dial(u.String(), nil)
 	}
 
-	log.Printf("connecting to %s", u.String())
-
-	c, resp, err := websocket.DefaultDialer.Dial(u.String(), http.Header{"x-api-key": {apiKey}})
 	if err != nil {
 		if resp != nil {
 			log.Fatalf("handshake failed with status %d and message %v", resp.StatusCode, err)
