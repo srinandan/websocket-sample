@@ -1,6 +1,6 @@
 # websocket-sample
 
-This sample is sample is meant to demonstrate websockets with Apigee hybrid.
+This sample is meant to demonstrate websockets with Apigee hybrid.
 
 ## Server
 
