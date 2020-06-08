@@ -26,18 +26,21 @@ spec:
   selector:
     app: websockets
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: websockets
   namespace: apps
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: websockets
   template:
     metadata:
       annotations:
         # rewrite http probe
-        sidecar.istio.io/rewriteAppHTTPProbers: "true"        
+        sidecar.istio.io/rewriteAppHTTPProbers: "true"
       labels:
         app: websockets
         version: v1
@@ -53,9 +56,9 @@ spec:
             path: /healthz
             port: 3000
           initialDelaySeconds: 5
-          periodSeconds: 5        
+          periodSeconds: 5
         resources:
           requests:
             cpu: 100m
       nodeSelector:
-        cloud.google.com/gke-nodepool: apps                             
+        cloud.google.com/gke-nodepool: apps
