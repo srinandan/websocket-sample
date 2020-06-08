@@ -18,9 +18,9 @@ metadata:
   name: websocket-sample
 build:
   googleCloudBuild:
-    projectId: nandanks-151422
+    projectId: project-id
   artifacts:
-  - image: gcr.io/nandanks-151422/websockets
+  - image: gcr.io/project-id/websockets
     context: server
 deploy:
   kubectl:

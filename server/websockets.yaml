@@ -46,7 +46,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: gcr.io/nandanks-151422/websockets
+      - image: gcr.io/project-id/websockets
         imagePullPolicy: IfNotPresent
         name: websockets
         ports:
