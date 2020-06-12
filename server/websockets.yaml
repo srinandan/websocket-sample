@@ -26,13 +26,16 @@ spec:
   selector:
     app: websockets
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: websockets
   namespace: apps
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: websockets
   template:
     metadata:
       annotations:
@@ -43,7 +46,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: gcr.io/nandanks-151422/websockets
+      - image: gcr.io/project-id/websockets
         imagePullPolicy: IfNotPresent
         name: websockets
         ports:
@@ -58,4 +61,4 @@ spec:
           requests:
             cpu: 100m
       nodeSelector:
-        cloud.google.com/gke-nodepool: apps                             
+        cloud.google.com/gke-nodepool: apps
