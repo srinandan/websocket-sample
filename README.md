@@ -1,3 +1,6 @@
+# Repo moved
+Please visit this repo for all [samples](https://github.com/srinandan/sample-apps)
+
 # websocket-sample
 
 This sample is meant to demonstrate websockets with Apigee hybrid.
